@@ -32,5 +32,21 @@ pipeline {
                 }
             }       
         }
+
+        stage('Build & Push Docker Image') {
+            environment {
+                DOCKER_IMAGE = "mydockerhub121/ultimate-cicd:${BUILD_NUMBER}"
+                //DOCKERFILE_LOCATION = "./Dockerfile"
+                DOCKER_REGISTRY_CREDENTIALS = credentials('docker-cred')
+            }
+            steps {
+                sh 'docker build -t '${DOCKER_IMAGE} .'
+                def dockerImage = docker.image("${DOCKER_IMAGE}")
+                docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+                dockerImage.push()
+            }
+        }
     }
 }
+       
+    
