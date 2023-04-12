@@ -12,7 +12,6 @@ pipeline {
               git branch: 'main', url: 'https://github.com/Mygithubneha/java-maven-sonar-argocd-helm-k8s.git'
            }
         }
-    }
 
         stage('Build & Test') {
             steps {
@@ -20,5 +19,6 @@ pipeline {
                 //build the project and create a JAR file
                 sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
             }
+        }
     }
 }
