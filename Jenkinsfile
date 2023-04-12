@@ -35,7 +35,7 @@ pipeline {
 
         stage('Build & Push Docker Image') {
             environment {
-                DOCKER_IMAGE = "mydockerhub121/ultimate-cicd:${BUILD_NUMBER}"
+                DOCKER_IMAGE = "abhishekf5/ultimate-cicd:${BUILD_NUMBER}"
                 //DOCKERFILE_LOCATION = "./Dockerfile"
                 DOCKER_REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
